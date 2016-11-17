@@ -34,9 +34,24 @@ public class ShardManager
         }
     }
 
-    public void setShards(UUID playear, int amount)
+    public CompletableFuture<RemoveResult> setShards(UUID player, int amount)
     {
-
+        //This is some pretty suspect shit tbh
+        return CompletableFuture.supplyAsync(() ->
+        {
+            AtomicInteger shards;
+            try
+            {
+                shards = shardCache.get(player).get();
+                shards.getAndSet(amount);
+                return new RemoveResult(shards.get(), true);
+            }
+            catch (InterruptedException | ExecutionException e)
+            {
+                e.printStackTrace();
+                return null;
+            }
+        });
     }
 
     public CompletableFuture<RemoveResult> removeShards(UUID uuid, int amount)
