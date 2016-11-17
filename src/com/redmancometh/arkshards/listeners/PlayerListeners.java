@@ -27,7 +27,6 @@ public class PlayerListeners implements Listener
     @EventHandler
     public void onLogout(PlayerQuitEvent e)
     {
-        //Load the player into the cache
         ArkShards.getInstance().getShardManager().purgeAndSave(e.getPlayer().getUniqueId());
     }
 
