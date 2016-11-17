@@ -1,0 +1,18 @@
+SQL:
+  username: root
+  password: enter11284
+  database: shardtest
+  host: localhost
+  port: 3306
+Messages: #All messages allow %s for how many shards the player has left, %n for the player's name, and %as for the amount of shards the transaction was for
+  withdraw_fail: "&cSorry but you can't withdraw that many &b&lShards!"
+  withdraw_succeed: "&eYou have successfully withdrawn &f&l%as &b&lShards!"
+  deposit: "&eYou just deposited &f&l%as &b&lShards!"
+  prefix: "&7[&f&lArk&b&lShards&7]"
+  balance_message: "&eYou have &f&l%s &b&lShards!"
+  not_enough_shards: "&eI'm sorry, but you don't have enough &b&lShards!"
+  withdrawal_usage: "&aUsage: /iswithdraw [amount]"
+Item:
+  name: "&3&l> &b&lIsland Shard &7(Click)"
+  material: PRISMARINE_SHARD
+  lore: "&7This can be redeemed by clicking!"

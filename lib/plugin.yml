@@ -1,0 +1,10 @@
+name: ArkShards
+author: Redmancometh
+version: 1.01
+main: com.redmancometh.arkshards.ArkShards
+commands:
+  iswithdraw:
+    description: Withdraws shards.
+  arkshards:
+    description: Shard commands
+    aliases: [shard, shards]
