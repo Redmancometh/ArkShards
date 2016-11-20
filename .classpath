@@ -16,5 +16,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Redmancometh/Desktop/skyblock/plugins/ASkyBlock.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Redmancometh/Desktop/skyblock/plugins/RedeemMCMMO.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Redmancometh/Desktop/skyblock/plugins/Essentials.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

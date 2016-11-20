@@ -53,8 +53,8 @@ public class PlayerListeners implements Listener
                 //Hackish, but fast, and it works
                 int amount = Integer.parseInt(ChatColor.stripColor(meta.getLore().get(1)).replaceAll("[^0-9]", "")); //anyone who wants to complain, find an edge case and I'll change thisS
                 ItemUtil.takeOne(item, p);
-                ArkShards.getInstance().getShardManager().removeShards(p.getUniqueId(), amount).thenAccept((
-                        result) -> p.sendMessage(ArkShards.getInstance().getConfigManager().getPrefix() + " " + ArkShards.getInstance().getConfigManager().getDepositMessage().replace("%s", result.getAmountLeft() + "").replace("%as", amount + "")));
+                ArkShards.getInstance().getShardManager().addShards(p.getUniqueId(), amount).thenAccept((
+                        result) -> p.sendMessage(ArkShards.getInstance().getConfigManager().getPrefix() + " " + ArkShards.getInstance().getConfigManager().getDepositMessage().replace("%s", result + "").replace("%as", amount + "")));
             }
         }
     }

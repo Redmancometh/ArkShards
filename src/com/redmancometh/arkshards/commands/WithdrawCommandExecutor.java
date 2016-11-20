@@ -20,6 +20,7 @@ public class WithdrawCommandExecutor implements CommandExecutor
         if (args.length < 1)
         {
             sender.sendMessage(ArkShards.getInstance().getConfigManager().getWithdrawalUsage());
+            return true;
         }
         if (!(sender instanceof Player))
         {
