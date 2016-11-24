@@ -4,7 +4,6 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -92,6 +91,11 @@ public class ShardManager
             }
             return null;
         });
+    }
+
+    public void test()
+    {
+
     }
 
     public CompletableFuture<AtomicInteger> getShards(UUID uuid)

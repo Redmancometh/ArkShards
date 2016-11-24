@@ -42,13 +42,11 @@ public class ItemUtil
     public static ItemStack getShardItem(int amount)
     {
         ItemStack shardItemBase = new ItemStack(ArkShards.getInstance().getConfigManager().getShardItem());
-        System.out.println(shardItemBase);
         ItemMeta meta = shardItemBase.getItemMeta();
         List<String> lore = meta.getLore();
         lore.add(amountString.replace("%a", amount + ""));
         meta.setLore(lore); //For some reason getting and adding to the list breaks things??
         shardItemBase.setItemMeta(meta);
-        System.out.println(shardItemBase);
         return shardItemBase;
     }
 }

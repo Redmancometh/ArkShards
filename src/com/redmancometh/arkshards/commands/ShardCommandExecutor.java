@@ -2,6 +2,8 @@ package com.redmancometh.arkshards.commands;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.redmancometh.arkshards.ArkShards;
+import com.redmancometh.arkshards.util.ItemUtil;
 
 public class ShardCommandExecutor implements CommandExecutor
 {
@@ -43,6 +46,8 @@ public class ShardCommandExecutor implements CommandExecutor
             case "add":
                 addShards(sender, args);
                 break;
+            case "giveitem":
+                giveShardItem(sender, args);
         }
         return false;
     }
@@ -152,6 +157,34 @@ public class ShardCommandExecutor implements CommandExecutor
                 }
                 UUID uuid = player.getUniqueId();
                 tryRemoveShards(uuid, amount, sender);
+            });
+        }
+        catch (NumberFormatException e)
+        {
+            sender.sendMessage(ArkShards.getInstance().getConfigManager().getPrefix() + " " + ChatColor.DARK_RED + "Please put in a valid number!");
+        }
+    }
+
+    public void giveShardItem(CommandSender sender, String[] args)
+    {
+        if (args.length < 3)
+        {
+            sender.sendMessage(ArkShards.getInstance().getConfigManager().getPrefix() + " " + ChatColor.DARK_RED + "Not enough arguments! Usage: /arkshards remove [username] [amount]");
+        }
+        String targetPlayer = args[1];
+        try
+        {
+            int amount = Integer.parseInt(args[2]);
+            CompletableFuture.supplyAsync(() -> Bukkit.getPlayer(targetPlayer), ArkShards.getInstance().getPool()).thenAccept((player) ->
+            {
+                if (player == null || !player.isOnline())
+                {
+                    sender.sendMessage(ChatColor.DARK_RED + "Player not found!");
+                    return;
+                }
+                Bukkit.getScheduler().scheduleSyncDelayedTask(ArkShards.getInstance(), () -> player.getInventory().addItem(ItemUtil.getShardItem(amount)), 5);
+                Bukkit.getLogger().log(Level.INFO, ArkShards.getInstance().getConfigManager().getPrefix() + " Player: " + targetPlayer + " was given " + amount + " shards!");
+                sender.sendMessage(ArkShards.getInstance().getConfigManager().getPrefix() + " Player: " + targetPlayer + " was given " + amount + " shards!");
             });
         }
         catch (NumberFormatException e)
